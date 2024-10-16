@@ -1,0 +1,30 @@
+FIND THE MISSING NUMBER IN SEQUENCED ARRAY
+
+import java.util.*;
+class main {
+static void ans(int arr[],int n)
+{
+
+  int s1=n*(n+1)/2;
+  int s2=0;
+  for(int i=0;i<n;i++)
+  {
+      s2=s2+arr[i];
+  }
+  int s3=s1-s2;
+  System.out.println(s3);
+}
+    public static void main(String args[])
+    {
+      int n;
+      Scanner sc=new Scanner(System.in);
+      n=sc.nextInt();
+      int arr[]=new int [n];
+      for(int i=0;i<n-1;i++)
+      {
+      arr[i]=sc.nextInt();
+
+      }
+      ans(arr,n);
+    }
+}

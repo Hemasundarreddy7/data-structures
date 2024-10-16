@@ -1,0 +1,256 @@
+import java.util.*;
+
+class node
+{
+  int data;
+  node next;
+  node(int data1,node next1)
+  {
+    this.data=data1;
+    this.next=next1;
+  }
+  node(int data1)
+  {
+    this.data=data1;
+    this.next=null;
+  }
+}
+
+
+public class main
+ {
+  static node convertintoll(int[] arr)
+  {
+    node first=new node(arr[0]);
+    node last=first;
+    last.next=null;
+    for(int i=1;i<arr.length;i++)
+    {
+       node temp=new node(arr[i]);
+       last.next=temp;
+       last=temp;
+       last.next=null;
+    }
+    return first;
+  }
+  static void display(node first)
+  {
+    node temp=first;
+    while(temp!=null)
+    {
+       System.out.println(temp.data);
+       temp=temp.next;
+    }
+  }
+  static node removehead(node first)
+  {
+     if(first==null)
+     {
+      return null;
+     }
+     else
+     {
+      first=first.next;
+      return first;
+     }
+  }
+
+
+  static node removetail(node first)
+  {
+    node temp=first;
+    while(temp.next.next!=null)
+    {
+      temp=temp.next;
+    }
+    temp.next=null;
+    return first;
+  }
+
+
+  static node revomeatposition(node first,int pos)
+  {
+     if(first==null)
+     return null;
+     else
+     {
+      node temp=first;
+      int count=0;
+      while(temp!=null)
+      {
+        count++;
+        if(count==pos-1)
+        {
+          break;
+        }
+        else
+        {
+          temp=temp.next;
+        }
+        temp.next=temp.next.next;
+      }
+     }
+     return first;
+  }
+
+
+  static node inserthead(node first,int data)
+  {
+    node temp=new node(data);
+    temp.next=first;
+    first=temp;
+    return first;
+  }
+
+
+  static node inserttail(node first,int data)
+  {
+    node newnode=new node(data);
+    node temp=first;
+    while(temp.next!=null)
+    {
+      temp=temp.next;
+    }
+    temp.next=newnode;
+    newnode.next=null;
+    return first;
+  }
+
+
+  static node insertatposition(node first,int pos,int data)
+  {
+    if(first==null)
+    {
+    node newnode=new node(data);
+    first=newnode;
+    return first;
+    }
+    else
+    {
+      node newnode=new node(data);
+      node temp=first;
+      int count=0;
+      while(temp!=null)
+      {
+       count++;
+       if(count==pos-1)
+       { 
+        break;
+       }
+       temp=temp.next;
+     }
+     newnode.next=temp.next.next;
+     temp.next=newnode;
+    }
+   return first;
+  }
+
+
+
+  static int count(node first)
+  {
+    int count=0;
+     while(first!=null)
+     {
+      count++;
+      first=first.next;
+     }
+     return count;
+  }
+
+
+
+  static node sortll(node first,int count)
+  {
+    if(first==null)
+    {
+      return null;
+    }
+    else
+    {
+     node temp=first;
+     for(int i=0;i<=count-2;i++)
+     {
+      for(int j=0;j<count-1-i;j++)
+      {
+      if(temp.data>temp.next.data)
+      {
+        int temp1=temp.data;
+        temp.data=temp.next.data;
+        temp.next.data=temp1;
+      }
+      temp=temp.next;
+      }
+      temp=first;
+     }
+    }
+    return first;
+  }
+
+
+
+  static node merge_two_linkedlist(node first1,node first2)
+  {
+    node first;
+    if(first1==null&&first2==null)
+    {
+      return null;
+    }
+    else
+    {
+      
+      node temp1=first1;
+      node temp2=first2;
+      if(temp1.data<temp2.data)
+      {
+        first=new node(temp1.data);
+        first.next=null;
+        temp1=temp1.next;
+      }
+      else
+      {
+        first=new node(temp2.data);
+        first.next=null;
+        temp2=temp2.next;
+      }
+      node temp=first;
+      while(temp1!=null && temp2!=null)
+      {
+        if(temp1.data<temp2.data)
+        {
+          temp.next=temp1;
+          temp1=temp1.next;
+        }
+        else
+        {
+          temp.next=temp2;
+          temp2=temp2.next;
+        }
+        temp=temp.next;
+      }
+    
+    }
+    return first;
+  }
+
+
+ public static void main(String args[])
+    {
+     /*int[] arr={5,3,4,2,1};
+     node first=convertintoll(arr);
+     int count=count(first);
+     first=removehead(first);
+     first=removetail(first);
+     first=revomeatposition(first,3);
+     first=inserthead(first,15);
+     first=inserttail(first,30);
+     first=insertatposition(first,3,80);
+     first=sortll(first,count);
+     */int[] arr1={12,4,15,90,6};
+     int[] arr2={5,16,89,2,8,95};
+     node first1 =convertintoll(arr1);
+     node first2 =convertintoll(arr2);
+     node first=merge_two_linkedlist(first1,first2);
+     display(first);
+    }
+}

@@ -1,0 +1,27 @@
+import java.util.Queue;
+
+import java.util.*;
+
+ class stack {
+   static void push(Queue<Integer> q,int x,int size)
+   {
+      q.add(x);
+      for(int i=1;i<size;i++)
+      {
+         int k=q.remove();
+         q.add(k);
+      }
+   }
+   
+   public static void main(String args[])
+   {
+      Queue<Integer> q=new LinkedList<Integer>();
+      push(q,3,1);
+      push(q,6,2);
+      push(q,10,3);
+      push(q,16,4);
+      q.remove();
+      
+      System.out.println(q.peek());
+   }
+ }

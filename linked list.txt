@@ -1,0 +1,48 @@
+
+CONVERT ARRAY INTO LINKED LIST
+
+import java.util.*;
+
+class node
+{
+  int data;
+  node next;
+  node(int data1,node next1)
+  {
+    this.data=data1;
+    this.next=next1;
+  }
+  node(int data1)
+  {
+    this.data=data1;
+    this.next=null;
+  }
+}
+public class main {
+  static void display(node first)
+  {
+    node temp1=first;
+     while(temp1!=null)
+     {
+      System.out.println(temp1.data);
+      temp1=temp1.next;
+     }
+  }
+  public static void main(String args[])
+    {
+     int []arr={1,2,3,4,31,25};
+     node first;
+     node last;
+     first=new node(arr[0]);
+     last=first;
+     last.next=null;
+     for(int i=1;i<arr.length;i++)
+     {
+      node temp;
+      temp=new node(arr[i]);
+      last.next=temp;
+      last=temp;
+     }
+     display(first);
+    }
+}

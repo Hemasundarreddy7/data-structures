@@ -1,0 +1,62 @@
+import java.util.*;
+
+import java.util.*;
+
+ class stack {
+   static int check_balanced(String s)
+   {
+      Stack<Character> st=new Stack<>();
+      for(int i=0;i<s.length();i++)
+      {
+         char sym=s.charAt(i);
+         if(sym=='(' || sym=='{' || sym=='[')
+         {
+           st.push(sym);
+         }
+         else 
+         {
+            if(st.empty())
+            {
+               return 0;
+            }
+            else
+            {
+               char x=st.pop();
+               if(sym==')'&&x=='(' || sym==']'&&x=='[' || sym=='}'&&x=='{')
+               {
+                  continue;
+               }
+               else
+               {
+                  return 0;
+               }
+            }
+         }
+      }
+      return 1;
+   }
+  
+   
+   public static void main(String args[])
+   {
+      
+      String s;
+      Scanner sc=new Scanner(System.in);
+      s=sc.next();
+      int res=check_balanced(s);
+      if(res==1)
+      System.out.println("balenced");
+      else
+      System.out.println("Unbalenced");
+   }
+ }
+
+
+
+output:
+[()]
+balenced
+PS E:\codes> javac stack.java
+PS E:\codes> java stack      
+{}[[)}
+Unbalenced

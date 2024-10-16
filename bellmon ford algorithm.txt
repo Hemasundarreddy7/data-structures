@@ -1,0 +1,33 @@
+//First line of the custom input must contain two space separated integers V denoting the number of vertices and E denoting the number of edges. Next E lines contains three space-separated integers denoting each edge and weight between the edges. Last line contains an integer S denoting the Source 
+class Solution {
+    static int[] bellman_ford(int V, ArrayList<ArrayList<Integer>> edges, int S) {   
+        int dist[] = new int[V];
+        Arrays.fill(dist,100000000);
+        dist[S] = 0;
+        
+        for(int i=1;i<V;i++){
+            for(ArrayList<Integer> edge: edges){
+                int u = edge.get(0);
+                int v = edge.get(1);
+                int wt = edge.get(2);
+                
+                if(dist[u]!=100000000 && dist[u] + wt < dist[v]){
+                    dist[v] = dist[u] + wt;
+                }
+            }
+        }
+        
+        for (ArrayList<Integer> edge : edges) {
+            int u = edge.get(0);
+            int v = edge.get(1);
+            int wt = edge.get(2);
+
+            if (dist[u] != 100000000 && dist[u] + wt < dist[v]) {
+                return new int[]{-1}; 
+            }
+        }
+        
+        
+        return dist;
+    }
+}

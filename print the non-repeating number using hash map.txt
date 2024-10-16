@@ -1,0 +1,45 @@
+print the non-repeating number using hash map:
+
+import java.util.*;
+class main {
+    static void ans(int arr[],int n)
+    {
+      
+       Map<Integer,Integer>mpp=new HashMap<>();
+       
+       
+       for(int i=0;i<n;i++)
+       {
+        if(mpp.containsKey(arr[i]))
+        {
+          mpp.put(arr[i],mpp.get(arr[i])+1);
+        }
+        else
+        {
+          mpp.put(arr[i],1);
+        }
+       }
+      for(Map.Entry<Integer,Integer>mpp2:mpp.entrySet())
+      {
+        if(mpp2.getValue()==1)
+        {
+          System.out.println(mpp2.getKey());
+        }
+      }
+
+   }
+
+
+    public static void main(String args[])
+    {
+      int n;
+      Scanner sc=new Scanner(System.in);
+      n=sc.nextInt();
+      int arr[]=new int [n];
+      for(int i=0;i<n;i++)
+      {
+      arr[i]=sc.nextInt();
+      }
+      ans(arr,n);
+    }
+}

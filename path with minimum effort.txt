@@ -1,0 +1,69 @@
+class Tuple
+{
+    int maxdif;
+    int x;
+    int y;
+    Tuple(int maxdif,int x,int y)
+    {
+        this.maxdif=maxdif;
+        this.x=x;
+        this.y=y;
+    }
+}
+class Solution {
+    public int minimumEffortPath(int[][] arr) {
+        int n=arr.length;
+       int m=arr[0].length;
+       PriorityQueue<Tuple>pq=new PriorityQueue<>((x,y)-> x.maxdif - y.maxdif);
+       int dist[][]=new int[n][m];
+       for(int i=0;i<n;i++)
+       {
+        for(int j=0;j<m;j++)
+        {
+            dist[i][j]=(int)(1e9);
+        }
+       }
+       int nrow[]={-1,0,1,0};
+       int ncol[]={0,1,0,-1};
+       dist[0][0]=0;
+       //int dis=Math.abs(arr[0][0]-arr[0][1]);
+       //dist[0][1]=dis;
+       //pq.add(new Pair(dis,0,1));
+
+       //dis=Math.abs(arr[0][0]-arr[1][0]);
+       //dist[1][0]=dis;
+       pq.add(new Tuple(0,0,0));
+
+       while(pq.size()!=0)
+       {
+        Tuple t=pq.peek();
+        pq.remove();
+        int maxdiff=t.maxdif;
+        int row=t.x;
+        int col=t.y;
+        ;
+        if(row==n-1 && col==m-1)
+        { 
+         return maxdiff;
+        }
+        for(int i=0;i<4;i++)
+        {
+            int nx=row+nrow[i];
+            int ny=col+ncol[i];
+            if(nx>=0 && ny>=0 && nx<n  && ny<m)
+            {
+                
+                int new_effort=Math.max(Math.abs(arr[nx][ny]-arr[row][col]),maxdiff);
+                if(new_effort<dist[nx][ny])
+                {
+                    dist[nx][ny]=new_effort;
+                    pq.add(new Tuple(new_effort,nx,ny));
+                }
+            }
+         }
+       }
+       return 0;
+    }
+    
+
+}

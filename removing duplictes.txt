@@ -1,0 +1,64 @@
+REVOMAL OF DUPLICATES USING HASHMAP:
+
+import java.util.*;
+class main {
+static void print(int arr[])
+{
+   Set<Integer> set=new HashSet<Integer>();
+   for(int i=0;i<arr.length;i++)
+   {
+      set.add(arr[i]);
+   }
+   Iterator<Integer>values=set.iterator();
+   while(values.hasNext())
+   {
+    System.out.println(values.next());
+   }
+}
+
+    public static void main(String args[])
+    {
+        
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++)
+        {
+        arr[i]=sc.nextInt();
+        }
+        print(arr);
+    }
+}
+
+
+
+REMOVING DUPLICATES USING TWO POINTERS APPROACH:(OPTIMAL APPROACH)
+
+import java.util.*;
+class main {
+static void print(int arr[])
+{
+    int i=0;
+  for(int j=1;j<arr.length;j++)
+  {
+    if(arr[i]!=arr[j])
+    {
+        i++;
+        arr[i]=arr[j];
+    }
+    System.out.println(arr[i]);
+  }
+}
+    public static void main(String args[])
+    {
+        
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++)
+        {
+        arr[i]=sc.nextInt();
+        }
+        print(arr);
+    }
+}
